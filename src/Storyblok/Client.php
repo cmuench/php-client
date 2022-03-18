@@ -2,12 +2,10 @@
 
 namespace Storyblok;
 
-use GuzzleHttp\Client as Guzzle;
 use Apix\Cache as ApixCache;
-use GuzzleHttp\RequestOptions;
 
 /**
- * Storyblok Client
+ * Send requests to Storyblok API
  */
 class Client extends BaseClient
 {
@@ -55,12 +53,12 @@ class Client extends BaseClient
     protected $cache;
     
     /**
-     * @var string
+     * @var string Language that will stories will be retrieved.
      */
     protected $language = 'default';
     
     /**
-     * @var string
+     * @var string Fallback language that will stories will be retrieved.
      */
     protected $fallbackLanguage = 'default';
 
@@ -95,7 +93,7 @@ class Client extends BaseClient
     }
     
     /**
-     * Set the language the story should be retrieved in
+     * Set the language the story should be retrieved in.
      *
      * @param  string $language
      * @return Client
@@ -104,6 +102,16 @@ class Client extends BaseClient
     {
         $this->language = $language;
         return $this;
+    }
+
+    /**
+     * Get the language the story should be retrieved in.
+     * 
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
     
     /**
@@ -119,6 +127,16 @@ class Client extends BaseClient
     }
 
     /**
+     * Get the fallback language the story should be retrieved in.
+     * 
+     * @return string
+     */
+    public function getFallbackLanguage()
+    {
+        return $this->fallbackLanguage;
+    }
+
+    /**
      * Enables caching for 404 responses
      *
      * @param  boolean $enabled
@@ -131,9 +149,9 @@ class Client extends BaseClient
     }
 
     /**
-     * Returns the requested version of the content
+     * Retrieve which version of the content will be used.
      *
-     * @return String
+     * @return string
      */
     public function getVersion()
     {   
